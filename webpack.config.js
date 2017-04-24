@@ -14,5 +14,10 @@ module.exports = {
             { test: /\.jsx$/, loader: "babel-loader" },
             { test: /\.spec\.js/, loader: "mocha-loader!babel-loader" }
         ]
+    },
+    externals: {
+      'react/addons': true,
+      'react/lib/ExecutionEnvironment': true,
+      'react/lib/ReactContext': true
     }
 };

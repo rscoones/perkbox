@@ -23,13 +23,16 @@ describe('The form', () => {
   });
 
   it('accepts and enables the submit if a number greater than 0', () => {
-    wrapper.find("input").simuate("change", 123);
+    const input = wrapper.find("input");
+    input.simulate("change", {target: {value: "123"}});
     expect(wrapper.find(".form-error").length).toBe(0);
     expect(wrapper.find("button").props().disabled).toNotBe(true);
   });
 
   it('rejects and disables the submit if an invalid or negative number is entered', () => {
-    wrapper.find("input").simulate("change", "abc123");
+    const input = wrapper.find("input");
+    input.simulate("change", {target: {value: "abc123"}});
+    wrapper.update();
     expect(wrapper.find(".form-error").length).toBe(1);
     expect(wrapper.find("button").props().disabled).toBe(true);
   });

@@ -18,11 +18,17 @@
   "homepage": "https://github.com/rscoones/perkbox#readme",
   "devDependencies": {
     "babel-loader": "^6.4.1",
+    "enzyme": "^2.8.2",
     "es6-promise": "^4.1.0",
     "eslint": "^3.19.0",
+    "expect": "^1.20.2",
+    "mocha": "^3.3.0",
     "mocha-loader": "^1.1.1",
+    "prop-types": "^15.5.8",
     "react": "^15.5.4",
+    "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.5.4",
+    "react-test-renderer": "^15.5.4",
     "webpack": "^2.4.1",
     "yup": "^0.21.3"
   }

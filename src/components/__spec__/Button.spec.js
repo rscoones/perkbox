@@ -25,7 +25,8 @@ describe('The button', () => {
       count++;
     };
     wrapper = mount(<App onClick={onClick} />);
-    wrapper.find('button').simuate('click');
+    const button = wrapper.find('button');
+    button.simulate('click');
     expect(count).toBe(1);
   })
 });
