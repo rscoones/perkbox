@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import Input from './Input.jsx';
 import Button from './Button.jsx';
+import CurrencyWebApi from '../services/CurrencyWebApi';
 
 export default class Form extends React.Component {
 
@@ -9,9 +10,11 @@ export default class Form extends React.Component {
     super(props);
     this.state = {
       value: "",
-      isValid: false
+      isValid: false,
+      converted: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
@@ -21,7 +24,10 @@ export default class Form extends React.Component {
   }
 
   handleSubmit() {
-    alert("yay");
+    const {value} = this.state;
+    CurrencyWebApi.convert(value, "USD").then(amount => {
+      this.setState({converted: `${value} in USD: ${amount}`})
+    })
   }
 
   getError() {
@@ -32,13 +38,14 @@ export default class Form extends React.Component {
   }
 
   render () {
-    const {value, isValid} = this.state;
+    const {value, isValid, converted} = this.state;
 
     return (
-      <form>
+      <form onSubmit={e => {e.preventDefault()}}>
         <Input value={value} onChange={this.handleInputChange} />
         {this.getError()}
         <Button onClick={this.handleSubmit} disabled={!isValid} />
+        {converted ? converted : null}
       </form>
     )
   }
